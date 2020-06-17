@@ -5,9 +5,10 @@ import {
   MuiThemeProvider,
   CssBaseline
 } from "@material-ui/core";
-import theme from "../../style/theme";
-import Router from "../Router";
+import theme from "../src/style/theme"
+import Router from "../src/containers/Router";
 import { createStore, applyMiddleware } from "redux";
+import { rootReducer } from '../src/reducers/index'
 
 
 const middlewares = [
@@ -21,12 +22,11 @@ const store = createStore(rootReducer, middlewares);
 
 export const App = () => (
   <Provider store={store}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router/>
-      </MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router />
+    </MuiThemeProvider>
   </Provider>
 );
 
 export default App;
-
