@@ -7,8 +7,8 @@ height:100%;
 
 export const FormWrapper = styled.form`
 display: grid;
-grid-template-columns: 1fr;
-height:100vh;
-width:80vw;
-margin: 0 auto;
+gap:8px;
+max-width:80vw;
+margin: auto;
 `
+//<link> para usar no router

@@ -4,6 +4,8 @@ import SignUpListener from '../SignUpListener'
 import SignUpBand from '../SignUpBand'
 import SignUpAdmin from '../SignUpAdmin'
 import Login from '../Login'
+import BandApprove from '../BandAprove'
+import HomePage from '../Home'
 
 const Router = () => {
   return (
@@ -11,7 +13,7 @@ const Router = () => {
       <Switch>
 
         <Route exact path="/">
-          <SignUpListener />
+          <Login />
         </Route>
 
         <Route exact path="/band">
@@ -22,8 +24,16 @@ const Router = () => {
           <SignUpAdmin />
         </Route>
 
-        <Route exact path="/login">
-          <Login />
+        <Route exact path="/Listener">
+          <SignUpListener />
+        </Route>
+
+        <Route exact path="/aprovation">
+          <BandApprove />
+        </Route>
+
+        <Route exact path="/home">
+          <HomePage />
         </Route>
 
       </Switch>
