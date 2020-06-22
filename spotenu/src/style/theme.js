@@ -1,8 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const palette = {
-  primary: { main: '#7d25a6' },
-  secondary: { main: '#4ea625' }
+  primary: { main: '#9319f4' },
+  secondary: { main: '#1fb1f0' }
 };
 const themeName = 'Grapes and limons';
 

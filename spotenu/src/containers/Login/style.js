@@ -1,14 +1,18 @@
 import styled from 'styled-components'
-import Box from '@material-ui/core/Box'
-
-export const BoxWrapper = styled(Box)`
-height:100%;
-`
+import TextField  from '@material-ui/core/TextField'
 
 export const FormWrapper = styled.form`
 display: grid;
-gap:8px;
-max-width:80vw;
-margin: auto;
+grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+border: 1px solid black;
+max-width:50vw;
+margin: 0 auto;
+padding: 24px;
+height: 80vh;
+gap:4px;
 `
-//<link> para usar no router
+
+export const TextFieldWrapper = styled(TextField)`
+max-width: 20vw;
+align-content: center;
+`
