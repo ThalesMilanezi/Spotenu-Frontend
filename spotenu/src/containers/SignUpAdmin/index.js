@@ -1,10 +1,10 @@
 import React from 'react'
 import useForm from '../../Hooks/CustomForm'
-import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
 import { useDispatch } from 'react-redux'
 import { signupAdmin } from '../../actions/user'
 import * as S from './style'
 import Footer from '../../components/Footer/Footer'
+import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
 
 
 
