@@ -3,6 +3,8 @@ import useForm from '../../Hooks/CustomForm'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { BoxWrapper, FormWrapper } from '../SignUpListener/style'
+import { signupListener } from '../../actions/user'
+import { useDispatch } from 'react-redux'
 
 
 const SignUpListener = () => {
@@ -14,6 +16,19 @@ const SignUpListener = () => {
     password: ""
   })
 
+
+  const dispatch = useDispatch()
+
+  const onClickSignup = () => {
+    const signupDataListener = {
+      name: form.name,
+      email: form.email,
+      nickname: form.nickname,
+      password: form.password
+    }
+    dispatch(signupListener(signupDataListener))
+  }
+
   const inputChange = (event) => {
     const { name, value } = event.target
     onChange(name, value)
@@ -21,6 +36,7 @@ const SignUpListener = () => {
 
   const handleSubmitForm = (event) => {
     event.preventDefault()
+    onClickSignup()
   }
 
 
@@ -76,7 +92,7 @@ const SignUpListener = () => {
           required
           pattern="{6,}"
         />
-        <Button color='primary' variant="contained">Inscreva-se</Button>
+        <Button color='primary' variant="contained" type="submit">Inscreva-se</Button>
         <Button onClick={resetForm} color="secondary">Limpar Campos</Button>
       </FormWrapper>
     </BoxWrapper>

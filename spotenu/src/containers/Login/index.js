@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import { BoxWrapper, FormWrapper } from '../SignUpListener/style'
-
+import * as S from './style'
+import AppBarComponent from '../../components/AppBarLogin'
+import { useDispatch } from 'react-redux'
+import Footer from '../../components/Footer/Footer'
 
 const Login = () => {
 
@@ -12,6 +12,16 @@ const Login = () => {
     senha:''
   })
 
+  const dispatch = useDispatch()
+
+  const loginAllusers = () => {
+    const loginData = {
+      email: usersInfo.email,
+      password: usersInfo.password
+    }
+    dispatch(loginAllusers(loginData))
+  }
+
   const inputChange = (event) => {
     const { name, value } = event.target
     setUsersInfo({...usersInfo, [name]:value})
@@ -19,15 +29,20 @@ const Login = () => {
 
   const handleSubmitLogin = (event) => {
     event.preventDefault()
+    // loginAllusers()
   }
 
-
+const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
 
   return (
-    <BoxWrapper>
-      <FormWrapper onSubmit={handleSubmitLogin}>
-        
-        <TextField
+    <>
+    <AppBarComponent/>
+    <S.BoxWrapper>
+      <S.LogoWrapper>
+        {logo}
+      </S.LogoWrapper>
+      <S.FormWrapper onSubmit={handleSubmitLogin}>
+        <S.InputWrapper
           value={usersInfo.email}
           name="email"
           title="E-mail válido"
@@ -39,7 +54,7 @@ const Login = () => {
           required
         />
 
-        <TextField
+        {/* <S.InputWrapper
           value={usersInfo.nickname}
           name="nickname"
           title="nickname para realizar o login"
@@ -49,8 +64,8 @@ const Login = () => {
           variant="outlined"
           label="NICKNAME"
           required
-        />
-        <TextField
+        /> */}
+        <S.InputWrapper
           value={usersInfo.password}
           name="password"
           title="Password com mínimo de 10 caracteres"
@@ -63,10 +78,12 @@ const Login = () => {
           required
           pattern="{10,}"
         />
-        <Button color='primary' variant="contained">Entrar</Button>
+        <S.ButtonStyled color='primary' variant="contained" type="onSubmit">Entrar</S.ButtonStyled>
         {/* <Button  color="secondary">Limpar Campos</Button> */}
-      </FormWrapper>
-    </BoxWrapper>
+      </S.FormWrapper>
+    </S.BoxWrapper>
+    <Footer/>
+  </>
   )
 }
 

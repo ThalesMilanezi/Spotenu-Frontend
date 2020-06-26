@@ -11,24 +11,23 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-
         <Route exact path="/">
           <Login />
         </Route>
 
-        <Route exact path="/band">
+        <Route exact path="/signup/band">
           <SignUpBand />
         </Route>
 
-        <Route exact path="/admin">
+        <Route exact path="/signup/admin">
           <SignUpAdmin />
         </Route>
 
-        <Route exact path="/Listener">
+        <Route exact path="/signup/listener">
           <SignUpListener />
         </Route>
 
-        <Route exact path="/aprovation">
+        <Route exact path="/band/approve">
           <BandApprove />
         </Route>
 

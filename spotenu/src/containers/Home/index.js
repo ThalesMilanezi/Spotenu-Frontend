@@ -5,7 +5,7 @@ const HomePage = () => {
   return(
     <div>
       <h1>Olá a todos da nossa pagina</h1>
-      <NavMenu/>
+      {/* <NavMenu/> */}
     </div>
   )
 }
