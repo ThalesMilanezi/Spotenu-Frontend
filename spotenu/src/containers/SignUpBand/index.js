@@ -1,9 +1,8 @@
 import React from 'react'
 import useForm from '../../Hooks/CustomForm'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import { BoxWrapper, FormWrapper } from '../SignUpListener/style'
-
+import * as S from './style'
+import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
+import Footer from '../../components/Footer/Footer'
 
 const SignUpBand = () => {
 
@@ -27,9 +26,14 @@ const SignUpBand = () => {
 
 
   return (
-    <BoxWrapper>
-      <FormWrapper onSubmit={handleSubmitForm}>
-        <TextField
+    <>
+    <AppBarSignupComponent/>
+    <S.BoxWrapper>
+      <S.Text>
+          Olá querid@s músic@s, Bora se cadastrar?
+        </S.Text>
+      <S.FormWrapper onSubmit={handleSubmitForm}>
+        <S.InputWrapper
           value={form.name}
           name="name"
           title="Nome Completo com mínimo de 3 letras"
@@ -41,7 +45,7 @@ const SignUpBand = () => {
           required
         />
 
-        <TextField
+        <S.InputWrapper
           value={form.email}
           name="email"
           title="E-mail válido"
@@ -53,7 +57,7 @@ const SignUpBand = () => {
           required
         />
 
-        <TextField
+        <S.InputWrapper
           value={form.nickname}
           name="nickname"
           title="nickname para realizar o login"
@@ -65,7 +69,7 @@ const SignUpBand = () => {
           required
         />
 
-        <TextField
+        <S.InputWrapper
           value={form.descricao}
           name="descricao"
           title="Descrição com no max 200 caracteres"
@@ -77,7 +81,7 @@ const SignUpBand = () => {
           required
         />
 
-        <TextField
+        <S.InputWrapper
           value={form.password}
           name="password"
           title="Password com mínimo de 6 caracteres"
@@ -90,10 +94,12 @@ const SignUpBand = () => {
           required
           pattern="{6,}"
         />
-        <Button color='primary' variant="contained" type='submit'>Inscreva-se</Button>
-        <Button onClick={resetForm} color="secondary">Limpar Campos</Button>
-      </FormWrapper>
-    </BoxWrapper>
+        <S.ButtonStyled color='primary' variant="contained" type='submit'>Inscreva-se</S.ButtonStyled>
+        <S.ButtonStyled onClick={resetForm} color="secondary">Limpar Campos</S.ButtonStyled>
+      </S.FormWrapper>
+    </S.BoxWrapper>
+    <Footer/>
+    </>
   )
 }
 

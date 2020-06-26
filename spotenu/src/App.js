@@ -7,18 +7,11 @@ import {
 } from "@material-ui/core";
 import theme from "../src/style/theme"
 import Router from "../src/containers/Router";
-import { createStore, applyMiddleware } from "redux";
 import { rootReducer } from '../src/reducers/index'
+import { configureStore } from '@reduxjs/toolkit'
 
 
-const middlewares = [
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__
-    ? window.__REDUX_DEVTOOLS_EXTENSION__()
-    : f => f
-];
-
-const store = createStore(rootReducer, middlewares);
+const store = configureStore({ reducer: rootReducer })
 
 export const App = () => (
   <Provider store={store}>
