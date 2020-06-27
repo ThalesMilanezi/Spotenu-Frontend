@@ -14,14 +14,22 @@ const AppBarLoginComponent = () => {
 
   let history = useHistory();
 
+  function logout() {
+    localStorage.clear()
+    history.push("/")
+  }
+
   function goHomePage() {
-    history.push("/home");
+    history.push("/");
   }
   function goAdminSignup() {
     history.push("/signup/Admin");
   }
   function goBandSignup() {
     history.push("/signup/band");
+  }
+  function goUserFree() {
+    history.push("/signup/listener");
   }
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -49,7 +57,8 @@ const AppBarLoginComponent = () => {
         >
           <MenuItem onClick={goAdminSignup}>Admin</MenuItem>
           <MenuItem onClick={goBandSignup}>Band</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={goUserFree}>Usuário FREE</MenuItem>
+          <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
         <Typography variant="h3" >
           LOGIN

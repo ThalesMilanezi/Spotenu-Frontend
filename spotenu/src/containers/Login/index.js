@@ -4,7 +4,7 @@ import AppBarComponent from '../../components/AppBarLogin'
 import { useDispatch } from 'react-redux'
 import Footer from '../../components/Footer/Footer'
 
-const Login = () => {
+const Login = (props) => {
 
   const [usersInfo, setUsersInfo] = useState({
     email:"",
@@ -14,13 +14,11 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
-  const loginAllusers = () => {
-    const loginData = {
-      email: usersInfo.email,
-      password: usersInfo.password
-    }
+  const loginAllusers = (loginData) => {
     dispatch(loginAllusers(loginData))
   }
+
+  console.log("AQUI ESTA A RESPOTA",loginAllusers)
 
   const inputChange = (event) => {
     const { name, value } = event.target
@@ -29,7 +27,7 @@ const Login = () => {
 
   const handleSubmitLogin = (event) => {
     event.preventDefault()
-    // loginAllusers()
+    props.loginAllusers()
   }
 
 const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>

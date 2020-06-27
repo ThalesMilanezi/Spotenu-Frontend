@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -14,11 +14,16 @@ const AppBarSignupComponent = () => {
 
   let history = useHistory();
 
+  function logout() {
+    localStorage.clear()
+    history.push("/")
+  }
+
   function goHomePage() {
     history.push("/");
   }
-  function goAdminSignup() {
-    history.push("/signup/Admin");
+  function goUsuarioFree() {
+    history.push("/signup/listener");
   }
   function goBandSignup() {
     history.push("/signup/band");
@@ -34,6 +39,8 @@ const AppBarSignupComponent = () => {
     setAnchorEl(null);
   };
 
+  
+
   return (
     <AppBar position="static">
       <S.ToolbarWrapper>
@@ -47,9 +54,9 @@ const AppBarSignupComponent = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={goAdminSignup}>Admin</MenuItem>
+          <MenuItem onClick={goUsuarioFree}>Usuário FREE</MenuItem>
           <MenuItem onClick={goBandSignup}>Band</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
+          <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
         <Typography variant="h3" >
           SIGN UP
