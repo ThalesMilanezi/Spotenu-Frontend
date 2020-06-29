@@ -1,35 +1,33 @@
 import React, { useState } from 'react'
 import * as S from './style'
 import AppBarComponent from '../../components/AppBarLogin'
-import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import Footer from '../../components/Footer/Footer'
+import {login} from "../../actions/user" 
+import { useHistory } from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
 
   const [usersInfo, setUsersInfo] = useState({
     email:"",
-    nickname:"",
-    senha:''
+    password:''
   })
-
-  const dispatch = useDispatch()
-
-  const loginAllusers = () => {
-    const loginData = {
-      email: usersInfo.email,
-      password: usersInfo.password
-    }
-    dispatch(loginAllusers(loginData))
-  }
 
   const inputChange = (event) => {
     const { name, value } = event.target
     setUsersInfo({...usersInfo, [name]:value})
   }
 
+  const history = useHistory()
+
+  const goToHome = () => {
+    history.push("/home")
+  }
+
   const handleSubmitLogin = (event) => {
     event.preventDefault()
-    // loginAllusers()
+    props.login(usersInfo)
+    
   }
 
 const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
@@ -78,7 +76,7 @@ const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
           required
           pattern="{10,}"
         />
-        <S.ButtonStyled color='primary' variant="contained" type="onSubmit">Entrar</S.ButtonStyled>
+        <S.ButtonStyled color='primary' variant="contained" type="onSubmit" onClick={goToHome}>Entrar</S.ButtonStyled>
         {/* <Button  color="secondary">Limpar Campos</Button> */}
       </S.FormWrapper>
     </S.BoxWrapper>
@@ -87,4 +85,10 @@ const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
   )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+  return{
+    login: (loginData) => dispatch(login(loginData)) 
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Login)

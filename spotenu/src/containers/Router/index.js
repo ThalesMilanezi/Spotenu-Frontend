@@ -6,6 +6,9 @@ import SignUpAdmin from '../SignUpAdmin'
 import Login from '../Login'
 import BandApprove from '../BandAprove'
 import HomePage from '../Home'
+import GenderPage from '../Gender/index'
+import AlbunsPage from '../Albuns/index'
+import MusicPage from '../Musics/index'
 
 const Router = () => {
   return (
@@ -33,6 +36,18 @@ const Router = () => {
 
         <Route exact path="/home">
           <HomePage />
+        </Route>
+
+        <Route exact path="/gender">
+          <GenderPage />
+        </Route>
+
+        <Route exact path="/album">
+          <AlbunsPage />
+        </Route>
+
+        <Route exact path="/music">
+          <MusicPage />
         </Route>
 
       </Switch>
