@@ -1,13 +1,18 @@
-// const initialState = {
-//   user: {}
-// }
+const initialState = {
+  user: {}
+}
 
-// const user = (state= initialState, action) => {
+const user = (state= initialState, action) => {
 
-//   switch(action.type) {
-//     default:
-//       return state
-//   }
-// }
+  switch(action.type) {
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.payload.user
+      }
+    default:
+      return state
+  }
+}
 
-// export default user
+export default user

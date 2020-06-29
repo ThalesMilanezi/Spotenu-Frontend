@@ -1,24 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import * as S from './style'
-import { Grid, Paper, Typography } from '@material-ui/core'
+import { Grid, Paper, Typography, List, ListItem, ListItemText } from '@material-ui/core'
 import HomeHeader from '../../components/HomeHeader/HomeHeader'
 import Footer from '../../components/Footer/Footer'
 import useForm from '../../Hooks/CustomForm'
-import { useDispatch } from 'react-redux'
+import { useDispatch, connect } from 'react-redux'
+import { createGender, getAllGenders } from '../../actions/gender'
 
-const GenderPage = () => {
+const GenderPage = (props) => {
   const { form, onChange, resetForm } = useForm({
     name: ""
   })
 
-  const dispatch = useDispatch()
+  const [gender, setGender] = useState({
+    name: ""
+  })
 
-  const createNewGender = () => {
-    const genderData = {
-      name: form.name
-    }
-    // dispatch(createGender(genderData))
-  }
+  useEffect((props) => {
+    // getGenders()
+  }, [gender])
+
 
   const inputChange = (event) => {
     const { name, value } = event.target
@@ -27,44 +28,68 @@ const GenderPage = () => {
 
   const handleSubmitForm = (event) => {
     event.preventDefault()
-    createNewGender()
+    props.createGender(gender)
   }
-  return(
+  return (
     <>
-    <HomeHeader/>
-    <S.MainWrapper>
-      <Grid item xs={3}>
-        <Paper>
-        <Typography variant="h1">
-            Criar um novo genero musical
+      <HomeHeader />
+      <S.MainWrapper>
+        <div>
+          <Grid item xs={12}>
+            <Paper>
+              <Typography variant="h5">
+                Criar um novo genero musical
           </Typography>
-          <S.FormWrapper onSubmit={handleSubmitForm}>
-          <S.InputWrapper
-            value={form.name}
-            name="Gênero"
-            title="Nome do novo genero"
-            type="text"
-            placeholder="Novo Genero"
-            onChange={inputChange}
-            variant="outlined"
-            label="genero"
-            required
-          />
-          <S.ButtonStyled color='primary' variant="contained" type="submit">Criar</S.ButtonStyled>
-        </S.FormWrapper>
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper >
-          <Typography variant="h1">
-            Todos os Generos
+              <S.FormWrapper onSubmit={handleSubmitForm}>
+                <S.InputWrapper
+                  value={form.name}
+                  name="Gênero"
+                  title="Nome do novo genero"
+                  type="text"
+                  placeholder="Novo Genero"
+                  onChange={inputChange}
+                  variant="outlined"
+                  label="genero"
+                  required
+                />
+                <S.ButtonStyled color='primary' variant="contained" type="submit">Criar</S.ButtonStyled>
+              </S.FormWrapper>
+            </Paper>
+          </Grid>
+        </div>
+        <div>
+          <Grid item xs={8}>
+            <Paper >
+              <Typography variant="h5">
+                Todos os Generos
           </Typography>
-          </Paper>
-      </Grid>
-    </S.MainWrapper>
-    <Footer/>
+              <List>
+                {/* {getAllGenders.map((listgender) =>
+                  <ListItem>
+                    {listgender}
+                  </ListItem>,
+                )} */}
+              </List>
+            </Paper>
+          </Grid>
+        </div>
+      </S.MainWrapper>
+      <Footer />
     </>
   )
 }
 
-export default GenderPage
+const mapStateToProps = (state) => {
+  return {
+    allGender: state.gender.Allgenders
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createGender: (genderData) => dispatch(createGender(genderData)),
+    getGenders: () => dispatch(getAllGenders())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GenderPage)

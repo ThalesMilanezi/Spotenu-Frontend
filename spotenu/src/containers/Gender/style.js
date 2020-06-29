@@ -3,7 +3,9 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
 export const MainWrapper = styled.div`
-
+display: grid;
+grid-template-columns: 2fr 2fr;
+max-width: 80vw;
 `
 
 export const FormWrapper = styled.form`

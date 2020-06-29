@@ -5,6 +5,7 @@ import { signupAdmin } from '../../actions/user'
 import * as S from './style'
 import Footer from '../../components/Footer/Footer'
 import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -16,6 +17,12 @@ const SignUpAdmin = () => {
     nickname: "",
     password: ""
   })
+
+  const history = useHistory()
+
+  const goToHome = () => {
+    history.push("/home")
+  }
 
   const dispatch = useDispatch()
 
@@ -97,7 +104,7 @@ const SignUpAdmin = () => {
             required
             pattern="{10,}"
           />
-          <S.ButtonStyled color='primary' variant="contained" type='submit'>Inscreva-se</S.ButtonStyled>
+          <S.ButtonStyled color='primary' variant="contained" type='submit' onClick={goToHome}>Inscreva-se</S.ButtonStyled>
           <S.ButtonStyled onClick={resetForm} color="secondary">Limpar Campos</S.ButtonStyled>
         </S.FormWrapper>
       </S.BoxWrapper>

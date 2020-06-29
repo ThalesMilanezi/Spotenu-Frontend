@@ -3,6 +3,7 @@ import useForm from '../../Hooks/CustomForm'
 import * as S from './style'
 import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
 import Footer from '../../components/Footer/Footer'
+import { useHistory } from 'react-router-dom'
 
 const SignUpBand = () => {
 
@@ -13,6 +14,12 @@ const SignUpBand = () => {
     descricao:"",
     password: ""
   })
+
+  const history = useHistory()
+
+  const goToHome = () => {
+    history.push("/home")
+  }
 
   const inputChange = (event) => {
     const { name, value } = event.target
@@ -94,7 +101,7 @@ const SignUpBand = () => {
           required
           pattern="{6,}"
         />
-        <S.ButtonStyled color='primary' variant="contained" type='submit'>Inscreva-se</S.ButtonStyled>
+        <S.ButtonStyled color='primary' variant="contained" type='submit' onClick={goToHome}>Inscreva-se</S.ButtonStyled>
         <S.ButtonStyled onClick={resetForm} color="secondary">Limpar Campos</S.ButtonStyled>
       </S.FormWrapper>
     </S.BoxWrapper>

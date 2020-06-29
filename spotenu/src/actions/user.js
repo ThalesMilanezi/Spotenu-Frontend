@@ -47,3 +47,26 @@ export const login = (loginData) => async (dispatch) => {
     window.alert("Não foi possivel realizar o Login do usuário, cheque as credenciais e tente novamente.")
   }
 }
+
+export const getUser = (info) => ({
+  type: "SET_USER",
+  payload: {
+    info
+  }})
+
+
+export const getUserById = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${baseUrl}/profile`,{
+      headers: {
+        auth : {
+          auth: getToken()
+        }
+      }
+    })
+    dispatch(getUser(response.data.user))
+  } catch (err) {
+    console.log(err.message)
+    window.alert("Não foi possivel encontrar esse usuário")
+  }
+}

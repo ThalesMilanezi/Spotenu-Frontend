@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import * as S from './style'
 import { useHistory } from "react-router-dom";
-import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -20,10 +19,10 @@ const AppBarLoginComponent = () => {
   }
 
   function goHomePage() {
-    history.push("/");
+    history.push("/sign");
   }
   function goAdminSignup() {
-    history.push("/signup/Admin");
+    history.push("/signup/Admin")
   }
   function goBandSignup() {
     history.push("/signup/band");
@@ -45,8 +44,9 @@ const AppBarLoginComponent = () => {
   return (
     <AppBar position="static">
       <S.ToolbarWrapper>
-        <IconButton  onClick={handleClick} size="medium" edge="start" color="inherit" aria-label="menu">
-        <MenuIcon />
+        <IconButton onClick={handleClick} size="medium" edge="start" color="inherit" aria-label="menu">
+          {/* <MenuIcon /> */}
+          <Button color="inherit">Cadastre-se</Button>
         </IconButton>
         <Menu
           id="simple-menu"
@@ -63,7 +63,7 @@ const AppBarLoginComponent = () => {
         <Typography variant="h3" >
           LOGIN
     </Typography>
-        <Button color="inherit" onClick={goHomePage} >Cadastre-se</Button>
+        <Button color="inherit" onClick={goHomePage} ></Button>
       </S.ToolbarWrapper>
     </AppBar>
   )
