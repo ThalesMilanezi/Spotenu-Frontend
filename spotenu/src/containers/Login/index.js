@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import * as S from './style'
 import AppBarComponent from '../../components/AppBarLogin'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Footer from '../../components/Footer/Footer'
 import {login} from "../../actions/user" 
 import { useHistory } from 'react-router-dom'
@@ -9,25 +9,29 @@ import { useHistory } from 'react-router-dom'
 const Login = (props) => {
 
   const [usersInfo, setUsersInfo] = useState({
-    email:"",
+    emailOrNickname:"",
     password:''
   })
+
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   const inputChange = (event) => {
     const { name, value } = event.target
     setUsersInfo({...usersInfo, [name]:value})
   }
 
-  const history = useHistory()
-
-  const goToHome = () => {
-    history.push("/home")
+  const handleLogin = (event) => {
+    const loginData = {
+      emailOrNickname: usersInfo.emailOrNickname,
+      password: usersInfo.password
+    }
+    dispatch(login(loginData, history))
   }
 
   const handleSubmitLogin = (event) => {
     event.preventDefault()
-    props.login(usersInfo)
-    
+    handleLogin()
   }
 
 const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
@@ -41,8 +45,8 @@ const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
       </S.LogoWrapper>
       <S.FormWrapper onSubmit={handleSubmitLogin}>
         <S.InputWrapper
-          value={usersInfo.email}
-          name="email"
+          value={usersInfo.emailOrNickname}
+          name="emailOrNickname"
           title="E-mail válido"
           type="email"
           placeholder="Email"
@@ -76,7 +80,7 @@ const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
           required
           pattern="{10,}"
         />
-        <S.ButtonStyled color='primary' variant="contained" type="onSubmit" onClick={goToHome}>Entrar</S.ButtonStyled>
+        <S.ButtonStyled color='primary' variant="contained" type="onSubmit">Entrar</S.ButtonStyled>
         {/* <Button  color="secondary">Limpar Campos</Button> */}
       </S.FormWrapper>
     </S.BoxWrapper>
@@ -85,10 +89,4 @@ const logo = <img src={require('../../assets/logoFinalAzul.jpg')} alt='Logo'/>
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return{
-    login: (loginData) => dispatch(login(loginData)) 
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Login)
+export default Login
