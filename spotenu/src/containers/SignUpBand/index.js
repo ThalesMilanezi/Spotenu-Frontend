@@ -4,6 +4,8 @@ import * as S from './style'
 import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
 import Footer from '../../components/Footer/Footer'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { signupBand } from '../../actions/user'
 
 const SignUpBand = () => {
 
@@ -11,15 +13,24 @@ const SignUpBand = () => {
     name: "",
     email: "",
     nickname: "",
-    descricao:"",
-    password: ""
+    password: "",
+    descricao:""
   })
 
   const history = useHistory()
+  const dispatch = useDispatch()
 
-  const goToHome = () => {
-    history.push("/home")
+  const onClikSignup = () => {
+    const signupDataBand = {
+      name: form.name,
+      email: form.email,
+      nickname: form.nickname,
+      password: form.password,
+      descricao: form.descricao
+    }
+    dispatch(signupBand(signupDataBand, history))
   }
+
 
   const inputChange = (event) => {
     const { name, value } = event.target
@@ -28,6 +39,7 @@ const SignUpBand = () => {
 
   const handleSubmitForm = (event) => {
     event.preventDefault()
+    onClikSignup()
   }
 
 
@@ -77,18 +89,6 @@ const SignUpBand = () => {
         />
 
         <S.InputWrapper
-          value={form.descricao}
-          name="descricao"
-          title="Descrição com no max 200 caracteres"
-          type="text"
-          placeholder="Descrição"
-          onChange={inputChange}
-          variant="outlined"
-          label="DESCRIÇÃO"
-          required
-        />
-
-        <S.InputWrapper
           value={form.password}
           name="password"
           title="Password com mínimo de 6 caracteres"
@@ -101,7 +101,19 @@ const SignUpBand = () => {
           required
           pattern="{6,}"
         />
-        <S.ButtonStyled color='primary' variant="contained" type='submit' onClick={goToHome}>Inscreva-se</S.ButtonStyled>
+        
+        <S.InputWrapper
+          value={form.descricao}
+          name="descricao"
+          title="Descrição com no max 200 caracteres"
+          type="text"
+          placeholder="Descrição"
+          onChange={inputChange}
+          variant="outlined"
+          label="DESCRIÇÃO"
+          required
+        />
+        <S.ButtonStyled color='primary' variant="contained" type='submit'>Inscreva-se</S.ButtonStyled>
         <S.ButtonStyled onClick={resetForm} color="secondary">Limpar Campos</S.ButtonStyled>
       </S.FormWrapper>
     </S.BoxWrapper>
