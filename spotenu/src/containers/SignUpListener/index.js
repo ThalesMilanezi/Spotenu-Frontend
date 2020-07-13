@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import * as S from './style'
 import Footer from '../../components/Footer/Footer'
 import AppBarSignupComponent from '../../components/AppBarSignup/AppBarSignup'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -17,6 +18,8 @@ const SignUpListener = () => {
     password: ""
   })
 
+  const history = useHistory()
+
 
   const dispatch = useDispatch()
 
@@ -27,7 +30,7 @@ const SignUpListener = () => {
       nickname: form.nickname,
       password: form.password
     }
-    dispatch(signupListener(signupDataListener))
+    dispatch(signupListener(signupDataListener, history))
   }
 
   const inputChange = (event) => {

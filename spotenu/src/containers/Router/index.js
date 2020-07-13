@@ -9,6 +9,7 @@ import HomePage from '../Home'
 import GenderPage from '../Gender/index'
 import AlbunsPage from '../Albuns/index'
 import MusicPage from '../Musics/index'
+import WaitingBand from '../WaitingBand'
 
 const Router = () => {
   return (
@@ -48,6 +49,10 @@ const Router = () => {
 
         <Route exact path="/music">
           <MusicPage />
+        </Route>
+
+        <Route exact path="/waiting">
+          <WaitingBand />
         </Route>
 
       </Switch>
