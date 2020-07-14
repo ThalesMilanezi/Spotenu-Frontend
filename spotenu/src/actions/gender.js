@@ -3,9 +3,13 @@ import { baseUrl, getToken } from "../utils/constants"
 
 export const createGender = (genderData) => async (dispatch) => {
   try {
-    const response = await axios.post(`${baseUrl}/create`, genderData)
-    const token = response.data.token
-    localStorage.setItem("token", token)
+    const response = await axios.post(`${baseUrl}/gender/create`, genderData,{
+      headers: {
+        Authorization: getToken()
+      }
+    })
+    // const token = response.data.acessToken
+    // localStorage.setItem("token", token)
   } catch (err) {
     console.error(err.message)
   }

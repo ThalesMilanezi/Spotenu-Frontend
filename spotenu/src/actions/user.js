@@ -6,7 +6,7 @@ export const signupListener = (signupDataListener, history) => async (dispatch) 
 
   try {
     const response = await axios.post(`${baseUrl}/signup/listener`, signupDataListener)
-    const token = response.data.token
+    const token = response.data.acessToken
     localStorage.setItem("token", token)
     history.push("/home")
   } catch (err) {
@@ -17,7 +17,7 @@ export const signupListener = (signupDataListener, history) => async (dispatch) 
 export const signupAdmin = (signupDataAdmin, history) => async (dispatch) => {
   try {
     const response = await axios.post(`${baseUrl}/signup/admin`, signupDataAdmin)
-    const token = response.data.token
+    const token = response.data.acessToken
     localStorage.setItem("token", token)
     history.push("/home")
   } catch (err) {
@@ -28,7 +28,7 @@ export const signupAdmin = (signupDataAdmin, history) => async (dispatch) => {
 export const signupBand = (signupDataBand, history) => async (dispatch) => {
   try {
     const response = await axios.post(`http://localhost:3001/signup/band`, signupDataBand)
-    const token = response.data.token
+    const token = response.data.acessToken
     // localStorage.setItem("token", token)
     history.push("/waiting")
   } catch (err) {
@@ -40,7 +40,7 @@ export const signupBand = (signupDataBand, history) => async (dispatch) => {
 export const login = (loginData, history) => async (dispatch) => {
   try {
     const response = await axios.post(`${baseUrl}/login`, loginData)
-    const token = response.data.token
+    const token = response.data.acessToken
     localStorage.setItem("token", token)
     history.push("/home")
   } catch (err) {
@@ -60,8 +60,8 @@ export const getUserById = () => async (dispatch) => {
   try {
     const response = await axios.get(`${baseUrl}/profile`,{
       headers: {
-        auth : {
-          auth: getToken()
+        Auth : {
+          Auth: getToken()
         }
       }
     })
