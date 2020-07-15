@@ -10,13 +10,15 @@ podem ser pensadas como a união dos componentes para se mostrar na tela. </p>
 
 <h3>Sobre</h3>
 <p>Esse projeto foi feito em React.</p>
-<p>Libs utilizadas</p>
+<p>Libs utilizadas:</p>
+
 - [X] Styled-components
 - [X] Axios
 - [X] material-ui em sua versão V4
 
 <p>Nessa aplicação ocorre a integração com o projeto de backend spotenu <a href="https://github.com/ThalesMilanezi/Spotenu-Backend">Clique aqui para conhecer o backend</a></p>
-O projeto frontend consiste em :
+<p>O projeto frontend consiste em :</p>
+
 - [X] Criar usuário administradores
 - [X] Criar usuário ouvintes FREE
 - [X] Criar usuário ouvintes PREMIUM
