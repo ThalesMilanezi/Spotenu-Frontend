@@ -14,7 +14,7 @@ const SignUpBand = () => {
     email: "",
     nickname: "",
     password: "",
-    descricao:""
+    description:""
   })
 
   const history = useHistory()
@@ -26,7 +26,7 @@ const SignUpBand = () => {
       email: form.email,
       nickname: form.nickname,
       password: form.password,
-      descricao: form.descricao
+      description: form.description
     }
     dispatch(signupBand(signupDataBand, history))
   }
@@ -60,7 +60,7 @@ const SignUpBand = () => {
           placeholder="Nome Completo"
           onChange={inputChange}
           variant="outlined"
-          label="NOME"
+          label="NAME"
           required
         />
 
@@ -97,20 +97,20 @@ const SignUpBand = () => {
           onChange={inputChange}
           variant="outlined"
           id="outlined-password-input"
-          label="SENHA"
+          label="PASSWORD"
           required
           pattern="{6,}"
         />
         
         <S.InputWrapper
-          value={form.descricao}
-          name="descricao"
+          value={form.description}
+          name="description"
           title="Descrição com no max 200 caracteres"
           type="text"
           placeholder="Descrição"
           onChange={inputChange}
           variant="outlined"
-          label="DESCRIÇÃO"
+          label="DESCRIPTION"
           required
         />
         <S.ButtonStyled color='primary' variant="contained" type='submit'>Inscreva-se</S.ButtonStyled>
